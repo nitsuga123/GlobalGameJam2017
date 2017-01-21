@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour {
 
-    [SerializeField]
-    private Animator anim;
+    bool Attack=true;
+
+    public static bool hit=true;
+
+    public static bool die=true;
+    
+    public static Animator anim;
 
 
 	// Use this for initialization
-	void Start () {
-		
+	void Awake () {
+        anim = GetComponent<Animator>();
+
 	}
 	
 	// Update is called once per frame
@@ -19,8 +25,12 @@ public class CharacterController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R) || (Input.GetKeyDown(KeyCode.B))  || (Input.GetKeyDown(KeyCode.Y)))
         {
             anim.SetInteger("Action",1);
+            Attack = false;
+        }else
+        {
+            Attack = true;
         }
-        else
+        if(Attack && hit && die)
         {
             anim.SetInteger("Action", 0);
         }
