@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pool_Enemys : MonoBehaviour {
-
-    private static Pool_Enemys pool_Enemys;
+   private static Pool_Enemys pool_Enemys;
 
     public static Pool_Enemys pool_enemys
     {
@@ -14,10 +13,10 @@ public class Pool_Enemys : MonoBehaviour {
         }
     }
 
-    [SerializeField]
+    //[SerializeField]
     private float min_high;
 
-    [SerializeField]
+   //[SerializeField]
     private float max_high;
 
     [SerializeField]
@@ -33,6 +32,7 @@ public class Pool_Enemys : MonoBehaviour {
 
     private void Awake()
     {
+        SetBounds();
         if (pool_Enemys == null)
         {
             pool_Enemys = this;
@@ -44,6 +44,20 @@ public class Pool_Enemys : MonoBehaviour {
             Destroy(gameObject);
         }
 
+        
+        Debug.Log("Bounds Called");
+
+    }
+
+    private void SetBounds()
+    {
+        Debug.Log("set Bounds");
+        //min_high = 5;
+        //max_high = 10;
+
+        max_high = Camera.main.transform.position.y + Camera.main.orthographicSize - 0.5f;
+        min_high = Camera.main.transform.position.y - Camera.main.orthographicSize+0.5f;
+
     }
 
     private void Prepare()
@@ -51,9 +65,7 @@ public class Pool_Enemys : MonoBehaviour {
         bat_list = new List<GameObject>();
         for (int i = 0; i < enemys_Amount; i++){
             CreateBat();
-
         }
-
     }
 
     private void CreateBat()
