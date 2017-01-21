@@ -5,6 +5,8 @@ using UnityEngine;
 public class AttackCollision1 : MonoBehaviour {
 
     [SerializeField]
+    private float scoreDelta;
+    [SerializeField]
     private Transform player;
 
     // Use this for initialization
@@ -21,15 +23,16 @@ public class AttackCollision1 : MonoBehaviour {
 
         if (collider.gameObject.tag.Equals(this.gameObject.tag))
         {
-
             Pool_Enemys.pool_enemys.DesactiveBat(collider);
             AttackBehaviour.Instance.EndRed();
             AttackBehaviour.Instance.EndBlue();
             AttackBehaviour.Instance.EndYellow();
             transform.position = player.position;
 
+            GameManager.Instance.score += scoreDelta;
         }
-        else {
+        else
+        {
             AttackBehaviour.Instance.EndRed();
             AttackBehaviour.Instance.EndBlue();
             AttackBehaviour.Instance.EndYellow();
