@@ -20,7 +20,15 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private Die player;
     [HideInInspector]
-    public float score;
+    public float score=0;
+    [SerializeField]
+    private float scoreToChange;
+    [SerializeField]
+    private float scoreDelta;
+    [SerializeField]
+    private float timeLefToChange;
+    [SerializeField]
+    private float velocityChange;
     [SerializeField]
     private Text scoreText;
 
@@ -44,6 +52,7 @@ public class GameManager : MonoBehaviour {
     void Update()
     {
         scoreText.text = "Score: " + score.ToString();
+
         if (gameEnd)
         {
             restart.SetActive(true);
@@ -55,7 +64,19 @@ public class GameManager : MonoBehaviour {
 
             SceneManager.LoadScene(0);
         }
+
+        if (score == scoreToChange)
+        {
+            ChangeRound();
+            scoreToChange += scoreDelta;
+        }
     }
 
+    //Other functions
 
+    public void ChangeRound()
+    {
+        Spawn.Instance.timeleft -= timeLefToChange;
+        Enemy.speed += velocityChange;
+    }
 }

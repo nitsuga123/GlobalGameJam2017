@@ -4,22 +4,41 @@ using UnityEngine;
 
 public class Spawn : MonoBehaviour {
 
-    [SerializeField]
-    private float timeleft;
+    private static Spawn instance;
+    public static Spawn Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
+    public float timeleft;
 
     private float i;
 
+    //Unity functions
 
-	// Use this for initialization
-	void Start () {
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    void Start ()
+    {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-
-        if(i < timeleft)
+	void Update ()
+    {
+        if (i < timeleft)
         {
             i+=Time.deltaTime;
         }
@@ -28,8 +47,6 @@ public class Spawn : MonoBehaviour {
             Pool_Enemys.pool_enemys.ObtainBat();
             i = 0;
         }
-
-
 	}
 
     void OnTriggerExit2D(Collider2D collider)
@@ -50,9 +67,5 @@ public class Spawn : MonoBehaviour {
            
             Pool_Enemys.pool_enemys.DesactiveBat(collider);
         }
-
     }
-
-  
-
 }

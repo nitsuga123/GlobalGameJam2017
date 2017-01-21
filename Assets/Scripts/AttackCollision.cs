@@ -9,65 +9,62 @@ public class AttackCollision : MonoBehaviour {
     [SerializeField]
     private Transform player;
 
-    // Use this for initialization
-    void Start() {
+    //Unity functions
 
-    }
-
-    // Update is called once per frame
-    void Update() {
-
-    }
     void OnTriggerEnter2D(Collider2D collider)
     {
-
         if (collider.gameObject.CompareTag("BatRed") && (this.gameObject.tag=="Red"))
         {
+            Debug.Log("if");
             Animator anim = collider.gameObject.GetComponent<Animator>();
             anim.SetTrigger("BatDie");
 
             GameManager.Instance.score += 10f;
-
-            StartCoroutine(BatDie(collider));
-        }
-        else {
-            Attacks.Instance.EndRed();
-            Attacks.Instance.EndBlue();
-            Attacks.Instance.EndYellow();
+            AttackBehaviour.Instance.EndRed();
             transform.position = player.position;
+            // StartCoroutine(BatDie(collider));
         }
+        /*else {
+            Debug.Log("else");
+            AttackBehaviour.Instance.EndRed();
+            AttackBehaviour.Instance.EndBlue();
+            AttackBehaviour.Instance.EndYellow();
+            transform.position = player.position;
+        }*/
         if (collider.gameObject.CompareTag("BatYellow") && (this.gameObject.tag == "Yellow"))
         {
             Animator anim = collider.gameObject.GetComponent<Animator>();
             anim.SetTrigger("BatDie");
 
             GameManager.Instance.score += 10f;
-
-            StartCoroutine(BatDie(collider));
-        }
-        else
-        {
-            Attacks.Instance.EndRed();
-            Attacks.Instance.EndBlue();
-            Attacks.Instance.EndYellow();
+            AttackBehaviour.Instance.EndYellow();
             transform.position = player.position;
+           //  StartCoroutine(BatDie(collider));
         }
+       /* else
+        {
+            AttackBehaviour.Instance.EndRed();
+            AttackBehaviour.Instance.EndBlue();
+            AttackBehaviour.Instance.EndYellow();
+            transform.position = player.position;
+        }*/
         if (collider.gameObject.CompareTag("BatBlue") && (this.gameObject.tag == "Blue"))
         {
             Animator anim = collider.gameObject.GetComponent<Animator>();
             anim.SetTrigger("BatDie");
 
             GameManager.Instance.score += 10f;
-
-            StartCoroutine(BatDie(collider));
-        }
-        else
-        {
-            Attacks.Instance.EndRed();
-            Attacks.Instance.EndBlue();
-            Attacks.Instance.EndYellow();
+            AttackBehaviour.Instance.EndBlue();
             transform.position = player.position;
+           // StartCoroutine(BatDie(collider));
         }
+      /*  else
+        {
+            AttackBehaviour.Instance.EndRed();
+            AttackBehaviour.Instance.EndBlue();
+            AttackBehaviour.Instance.EndYellow();
+            transform.position = player.position;
+        }*/
     }
 
     //Other functions
@@ -75,14 +72,14 @@ public class AttackCollision : MonoBehaviour {
     private IEnumerator BatDie(Collider2D collider)
     {
         yield return new WaitForSeconds(BatTimeToDie);
-        
-        Attacks.Instance.EndRed();
-        Attacks.Instance.EndBlue();
-        Attacks.Instance.EndYellow();
+
+        AttackBehaviour.Instance.EndRed();
+        AttackBehaviour.Instance.EndBlue();
+        AttackBehaviour.Instance.EndYellow();
         transform.position = player.position;
         Pool_Enemys.pool_enemys.DesactiveBat(collider);
-        collider.GetComponent<Animator>().Stop();
-        collider.GetComponent<Animator>().Play("BatRedDefault");
+        //collider.GetComponent<Animator>().Stop();
+        //collider.GetComponent<Animator>().Play("BatRedDefault");
     }
 }
 

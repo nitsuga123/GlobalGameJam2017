@@ -13,7 +13,8 @@ public class Attacks : MonoBehaviour {
         }
     }
 
-    private float waveSpeed = 0.5f;
+    [HideInInspector]
+    public float waveSpeed = 0.5f;
 
     public GameObject waveRed;
     public GameObject waveBlue;

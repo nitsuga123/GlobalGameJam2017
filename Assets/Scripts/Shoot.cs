@@ -22,19 +22,19 @@ public class Shoot : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Attacks.Instance.AttackRed();
+                AttackBehaviour.Instance.AttackRed();
                 time = 0;
             }
 
             if (Input.GetKeyDown(KeyCode.B))
             {
-                Attacks.Instance.AttackBlue();
+                AttackBehaviour.Instance.AttackBlue();
                 time = 0;
             }
 
             if (Input.GetKeyDown(KeyCode.Y))
             {
-                Attacks.Instance.AttackYellow();
+                AttackBehaviour.Instance.AttackYellow();
                 time = 0;
             }
         }
