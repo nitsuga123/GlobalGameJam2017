@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
     }
     void Update()
     {
-        scoreText.text = "Score: " + score.ToString();
+
 
         if (gameEnd)
         {
@@ -79,4 +79,5 @@ public class GameManager : MonoBehaviour {
         Spawn.Instance.timeleft -= timeLefToChange;
         Enemy.speed += velocityChange;
     }
+
 }

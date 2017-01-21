@@ -38,26 +38,18 @@ public class AttackCollision1 : MonoBehaviour {
             AttackBehaviour.Instance.EndYellow();
             transform.position = player.position;
         }
-       /* if (collider.gameObject.CompareTag("Blue"))
-        {
-
-            Pool_Enemys.pool_enemys.DesactiveBat(collider);
-            Attacks.Instance.EndBlue();
-            transform.position = player.position;
-
-
-        }
-        if (collider.gameObject.CompareTag("Yellow"))
-        {
-
-            Pool_Enemys.pool_enemys.DesactiveBat(collider);
-            Attacks.Instance.EndYellow();
-            transform.position = player.position;
-        }
-        */
     }
 
 
+    void OnTriggerExit2D(Collider2D c)
+    {
+        Debug.Log("rip");
+        if (c.gameObject.CompareTag("GameController"))
+        {
+            Debug.Log("rip");
+            c.gameObject.transform.position = player.transform.position;
+        }
     }
+}
 
 

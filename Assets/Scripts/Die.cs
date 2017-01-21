@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Die : MonoBehaviour {
 
+    [SerializeField]
+    private Collider2D colider;
+
     [HideInInspector]
     public int hitCount;
     [SerializeField]
@@ -31,6 +34,8 @@ public class Die : MonoBehaviour {
             if (hitCount == 3)
             {
                 StartCoroutine(GameOver());
+                colider.enabled = false;
+                this.GetComponent<Shoot>().enabled = false;
             }
         }
     }
