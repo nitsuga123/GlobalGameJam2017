@@ -5,6 +5,8 @@ using UnityEngine;
 public class AttackCollision : MonoBehaviour {
 
     [SerializeField]
+    private float BatTimeToDie;
+    [SerializeField]
     private Transform player;
 
     // Use this for initialization
@@ -19,15 +21,14 @@ public class AttackCollision : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collider)
     {
 
-        if (collider.gameObject.tag.Equals(this.gameObject.tag))
+        if (collider.gameObject.CompareTag("BatRed") && (this.gameObject.tag=="Red"))
         {
+            Animator anim = collider.gameObject.GetComponent<Animator>();
+            anim.SetTrigger("BatDie");
 
-            Pool_Enemys.pool_enemys.DesactiveBat(collider);
-            Attacks.Instance.EndRed();
-            Attacks.Instance.EndBlue();
-            Attacks.Instance.EndYellow();
-            transform.position = player.position;
+            GameManager.Instance.score += 10f;
 
+            StartCoroutine(BatDie(collider));
         }
         else {
             Attacks.Instance.EndRed();
@@ -35,26 +36,54 @@ public class AttackCollision : MonoBehaviour {
             Attacks.Instance.EndYellow();
             transform.position = player.position;
         }
-       /* if (collider.gameObject.CompareTag("Blue"))
+        if (collider.gameObject.CompareTag("BatYellow") && (this.gameObject.tag == "Yellow"))
         {
+            Animator anim = collider.gameObject.GetComponent<Animator>();
+            anim.SetTrigger("BatDie");
 
-            Pool_Enemys.pool_enemys.DesactiveBat(collider);
-            Attacks.Instance.EndBlue();
-            transform.position = player.position;
+            GameManager.Instance.score += 10f;
 
-
+            StartCoroutine(BatDie(collider));
         }
-        if (collider.gameObject.CompareTag("Yellow"))
+        else
         {
-
-            Pool_Enemys.pool_enemys.DesactiveBat(collider);
+            Attacks.Instance.EndRed();
+            Attacks.Instance.EndBlue();
             Attacks.Instance.EndYellow();
             transform.position = player.position;
         }
-        */
+        if (collider.gameObject.CompareTag("BatBlue") && (this.gameObject.tag == "Blue"))
+        {
+            Animator anim = collider.gameObject.GetComponent<Animator>();
+            anim.SetTrigger("BatDie");
+
+            GameManager.Instance.score += 10f;
+
+            StartCoroutine(BatDie(collider));
+        }
+        else
+        {
+            Attacks.Instance.EndRed();
+            Attacks.Instance.EndBlue();
+            Attacks.Instance.EndYellow();
+            transform.position = player.position;
+        }
     }
 
+    //Other functions
 
+    private IEnumerator BatDie(Collider2D collider)
+    {
+        yield return new WaitForSeconds(BatTimeToDie);
+        
+        Attacks.Instance.EndRed();
+        Attacks.Instance.EndBlue();
+        Attacks.Instance.EndYellow();
+        transform.position = player.position;
+        Pool_Enemys.pool_enemys.DesactiveBat(collider);
+        collider.GetComponent<Animator>().Stop();
+        collider.GetComponent<Animator>().Play("BatRedDefault");
     }
+}
 
 

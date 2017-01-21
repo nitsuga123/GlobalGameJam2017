@@ -51,13 +51,8 @@ public class Pool_Enemys : MonoBehaviour {
 
     private void SetBounds()
     {
-        Debug.Log("set Bounds");
-        //min_high = 5;
-        //max_high = 10;
-
-        max_high = Camera.main.transform.position.y + Camera.main.orthographicSize - 0.5f;
-        min_high = Camera.main.transform.position.y - Camera.main.orthographicSize+0.5f;
-
+        max_high = Camera.main.transform.position.y + Camera.main.orthographicSize - 1.7f;
+        min_high = Camera.main.transform.position.y - Camera.main.orthographicSize + 1.7f;
     }
 
     private void Prepare()
@@ -93,8 +88,6 @@ public class Pool_Enemys : MonoBehaviour {
         bat_list.RemoveAt(bat_list.Count - 1);
         bat.gameObject.SetActive(true);
         return bat;
-
-
     }
 
     public void DesactiveBat(Collider2D bat)
@@ -102,15 +95,7 @@ public class Pool_Enemys : MonoBehaviour {
         bat.transform.position = new Vector3(spawn.transform.position.x, Random.Range(min_high, max_high));
         bat.gameObject.SetActive(false);
         bat_list.Add(bat.gameObject);
-
+        SpriteRenderer batRen = bat.GetComponent<SpriteRenderer>();
+        batRen.color = new Color(batRen.color.r,batRen.color.g,batRen.color.b,1f);
     }
-
-
-
-
-
-
-
-
-
 }

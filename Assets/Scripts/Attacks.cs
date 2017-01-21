@@ -63,8 +63,6 @@ public class Attacks : MonoBehaviour {
     private void MoveRed()
     {
         waveRed.transform.position = new Vector3(waveRed.transform.position.x + waveSpeed, waveRed.transform.position.y, waveRed.transform.position.z);
-
-
     }
 
     public void EndRed()
@@ -100,7 +98,5 @@ public class Attacks : MonoBehaviour {
     public void EndBlue()
     {
         attackingBlue = false;
-    }
-
-   
+    } 
 }

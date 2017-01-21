@@ -2,11 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    [SerializeField]
+    private static GameManager instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
     private bool gameEnd;
+    public Image[] hearts = new Image[3];
+    [SerializeField]
+    private Die player;
+    [HideInInspector]
+    public float score;
+    [SerializeField]
+    private Text scoreText;
 
     [Header("Images")]
 
@@ -14,8 +30,20 @@ public class GameManager : MonoBehaviour {
 
     //Unity functions
 
+    void Awake()
+    {
+        if (instance == null)
+        {
+             instance= this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Update()
     {
+        scoreText.text = "Score: " + score.ToString();
         if (gameEnd)
         {
             restart.SetActive(true);
@@ -28,4 +56,6 @@ public class GameManager : MonoBehaviour {
             SceneManager.LoadScene(0);
         }
     }
+
+
 }

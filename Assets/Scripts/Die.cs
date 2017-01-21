@@ -19,9 +19,14 @@ public class Die : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Red") || other.CompareTag("Blue") || other.CompareTag("Yellow"))
+        if (other.CompareTag("BatRed") || other.CompareTag("BatBlue") || other.CompareTag("BatYellow"))
         {
+            GameManager.Instance.hearts[hitCount].gameObject.SetActive(false);
             hitCount++;
+
+            Animator batAnim = other.gameObject.GetComponent<Animator>();
+
+            batAnim.SetTrigger("BatDie");
 
             if (hitCount == 3)
             {

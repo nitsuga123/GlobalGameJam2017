@@ -19,13 +19,5 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         rb.velocity = new Vector3(-speed * Time.deltaTime, 0, 0);
-
-
 	}
-
-
-
-
-
-
 }
