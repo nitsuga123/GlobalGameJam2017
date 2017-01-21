@@ -19,6 +19,8 @@ public class Attacks : MonoBehaviour {
     public GameObject waveBlue;
     public GameObject waveYellow;
 
+
+    
     private bool attackingRed = false;
     private bool attackingYellow = false;
     private bool attackingBlue = false;
@@ -61,9 +63,11 @@ public class Attacks : MonoBehaviour {
     private void MoveRed()
     {
         waveRed.transform.position = new Vector3(waveRed.transform.position.x + waveSpeed, waveRed.transform.position.y, waveRed.transform.position.z);
+
+
     }
 
-    private void EndRed()
+    public void EndRed()
     {
         attackingRed = false;
     }
@@ -78,7 +82,7 @@ public class Attacks : MonoBehaviour {
         waveYellow.transform.position = new Vector3(waveYellow.transform.position.x + waveSpeed, waveYellow.transform.position.y, waveYellow.transform.position.z);
     }
 
-    private void EndYellow()
+    public void EndYellow()
     {
         attackingYellow = false;
     }
@@ -93,10 +97,10 @@ public class Attacks : MonoBehaviour {
         waveBlue.transform.position = new Vector3(waveBlue.transform.position.x + waveSpeed, waveBlue.transform.position.y, waveBlue.transform.position.z);
     }
 
-    private void EndBlue()
+    public void EndBlue()
     {
         attackingBlue = false;
     }
 
-
+   
 }

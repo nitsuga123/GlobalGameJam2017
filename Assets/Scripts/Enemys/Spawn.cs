@@ -35,14 +35,24 @@ public class Spawn : MonoBehaviour {
     void OnTriggerExit2D(Collider2D collider)
     {
 
-        if (collider.gameObject.CompareTag("Bat"))
+        if (collider.gameObject.CompareTag("Red"))
         {
-            Debug.Log("rio¿p");
+           
+            Pool_Enemys.pool_enemys.DesactiveBat(collider);
+        }
+        if (collider.gameObject.CompareTag("Blue"))
+        {
+            
+            Pool_Enemys.pool_enemys.DesactiveBat(collider);
+        }
+        if (collider.gameObject.CompareTag("Yellow"))
+        {
+           
             Pool_Enemys.pool_enemys.DesactiveBat(collider);
         }
 
     }
 
-    
+  
 
 }
