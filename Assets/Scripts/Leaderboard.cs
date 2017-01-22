@@ -21,6 +21,7 @@ public class Leaderboard : MonoBehaviour {
     [SerializeField]
     private Text[] scores = new Text[3];
 
+    private string inputFieldText;
     [SerializeField]
     private InputField inputField;
 
@@ -45,8 +46,8 @@ public class Leaderboard : MonoBehaviour {
 
     void Update()
     {
-        string inputFieldText = inputField.text;
-        CompareScore(inputFieldText, Score.Instance.score);
+        inputFieldText = inputField.text;
+        CompareScore (inputFieldText, Score.Instance.score);
 
         if (gameEnd)
         {
