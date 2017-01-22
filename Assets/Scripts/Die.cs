@@ -15,12 +15,18 @@ public class Die : MonoBehaviour {
     [SerializeField]
     private float time;
 
+    [Header("AudioSources")]
+
 	[SerializeField]
 	private AudioSource MusicLevel;
-
-	[SerializeField]
+    [SerializeField]
 	private AudioSource MusicGameOver;
-
+    [SerializeField]
+    private AudioSource damage1;
+    [SerializeField]
+    private AudioSource damage2;
+    [SerializeField]
+    private AudioSource damage3;
 
     //Unity functions
 
@@ -33,20 +39,38 @@ public class Die : MonoBehaviour {
     {
         time += Time.deltaTime;
 
-
         if (!CharacterController.hit && time>0.7f)
         {
-            Debug.Log(CharacterController.hit);
             CharacterController.hit = true;
             time = 0;
         }
-        Debug.Log(CharacterController.hit);
-
     }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Red") || other.CompareTag("Blue") || other.CompareTag("Yellow"))
         {
+            Debug.Log("1");
+
+            int i = Random.Range(0, 3);
+
+            if (i == 0)
+            {
+                Debug.Log("Entro1");
+                damage1.Play();
+            }
+
+            else if (i == 1)
+            {
+                Debug.Log("Entro2");
+                damage2.Play();
+            }
+
+            else if (i == 2)
+            {
+                Debug.Log("Entro3");
+                damage3.Play();
+            }
+
             CharacterController.anim.SetInteger("Action", 2);
             GameManager.Instance.hearts[hitCount].gameObject.SetActive(false);
             hitCount++;
@@ -57,7 +81,6 @@ public class Die : MonoBehaviour {
             Animator batAnim = other.gameObject.GetComponent<Animator>();
 
             batAnim.SetTrigger("BatDie");
-
 
             if (hitCount == 3)
             {
@@ -74,9 +97,6 @@ public class Die : MonoBehaviour {
                 CharacterController.die = true;
             }
         }
-       
-            
-        
     }
 
     //Other functions
@@ -89,7 +109,10 @@ public class Die : MonoBehaviour {
         //SceneManager.LoadScene(0);
     }
 
-	public IEnumerator FadeOut(AudioSource a,float Fadetime) {
+    //Fades
+
+	public IEnumerator FadeOut(AudioSource a,float Fadetime)
+    {
 		float StartVolume = a.volume;
 
 		while (a.volume > 0) {
@@ -100,7 +123,8 @@ public class Die : MonoBehaviour {
 		a.Stop();
 		a.volume = StartVolume;
 	}
-	public IEnumerator Fadein(AudioSource a, float Fadetime,float volumenMax)
+
+    public IEnumerator Fadein(AudioSource a, float Fadetime,float volumenMax)
 	{
 		float StartVolume = volumenMax;
 		a.Play();

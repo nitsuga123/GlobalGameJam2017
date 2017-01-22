@@ -80,8 +80,11 @@ public class Pool_Enemys : MonoBehaviour {
 
     private GameObject BatAmount()
     {
-        GameObject bat = bat_list[bat_list.Count - 1];
-        bat_list.RemoveAt(bat_list.Count - 1);
+        int batIndex = Random.Range(0, bat_list.Count-1);
+
+        GameObject bat = bat_list[batIndex];
+        bat_list.RemoveAt(batIndex
+            );
         bat.gameObject.SetActive(true);
         return bat;
     }

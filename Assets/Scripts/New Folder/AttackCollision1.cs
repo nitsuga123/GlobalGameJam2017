@@ -34,9 +34,6 @@ public class AttackCollision1 : MonoBehaviour {
 
         if (collider.gameObject.tag.Equals(this.gameObject.tag))
 		{
-			
-
-
             Pool_Enemys.pool_enemys.DesactiveBat(collider);
             AttackBehaviour.Instance.EndRed();
             AttackBehaviour.Instance.EndBlue();

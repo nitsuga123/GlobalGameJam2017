@@ -14,7 +14,6 @@ public class Spawn : MonoBehaviour {
     }
 
     public float timeleft;
-
     private float i;
 
     //Unity functions
@@ -54,12 +53,10 @@ public class Spawn : MonoBehaviour {
 
         if (collider.gameObject.CompareTag("Red"))
         {
-           
             Pool_Enemys.pool_enemys.DesactiveBat(collider);
         }
         if (collider.gameObject.CompareTag("Blue"))
         {
-            
             Pool_Enemys.pool_enemys.DesactiveBat(collider);
         }
         if (collider.gameObject.CompareTag("Yellow"))

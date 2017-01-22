@@ -12,8 +12,8 @@ public class CharacterController : MonoBehaviour {
     
     public static Animator anim;
 
+    //Unity functions
 
-	// Use this for initialization
 	void Awake () {
         anim = GetComponent<Animator>();
 
