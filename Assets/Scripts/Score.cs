@@ -29,6 +29,7 @@ public class Score : MonoBehaviour {
     private float velocityChange;
     [SerializeField]
     private Text scoreText;
+    private float timeLefToChangeTemp;
 
 
 
@@ -60,7 +61,10 @@ public class Score : MonoBehaviour {
 
     public void ChangeRound()
     {
+        timeLefToChangeTemp = timeLefToChange;
         Spawn.Instance.timeleft -= timeLefToChange;
+        timeLefToChange = timeLefToChange / 2;
+        Debug.Log("time lef to change: " + timeLefToChange);
         Enemy.speed += velocityChange;
 
     }
