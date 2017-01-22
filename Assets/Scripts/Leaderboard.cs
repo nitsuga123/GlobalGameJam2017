@@ -14,6 +14,7 @@ public class Leaderboard : MonoBehaviour {
         }
     }
 
+    public bool gameEnd;
     public int[] score = new int[3]; //The score[0] is the Min and the score[2] is the Max
     public string[] scoreName = new string[3];
 
@@ -40,6 +41,20 @@ public class Leaderboard : MonoBehaviour {
     void Start()
     {
         SetText();
+    }
+
+    void Update()
+    {
+        string inputFieldText = inputField.text;
+        CompareScore(inputFieldText, Score.Instance.score);
+
+        if (gameEnd)
+        {
+            if (ButtonsFunction.Instance.menuScreens[3].activeInHierarchy && Input.GetKeyDown(KeyCode.Y))
+            {
+                ButtonsFunction.Instance.Enter();
+            }
+        }
     }
 
     //Other functions
@@ -117,12 +132,5 @@ public class Leaderboard : MonoBehaviour {
             position++;
             score++;
         }
-    }
-
-    public void GameValues()
-    {
-        string inputFieldText = inputField.text;
-
-        CompareScore(inputFieldText, Score.Instance.score);
     }
 }

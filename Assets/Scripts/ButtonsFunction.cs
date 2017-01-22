@@ -21,6 +21,9 @@ public class ButtonsFunction : MonoBehaviour {
     [SerializeField]
     private float secondsToWait = 13f;
 
+    [SerializeField]
+    private Shoot shoot;
+
     public GameObject[] menuScreens = new GameObject[4];
 
     [Header("Camera things")]
@@ -55,6 +58,7 @@ public class ButtonsFunction : MonoBehaviour {
         menuScreens[0].SetActive(true);
         menuScreens[1].SetActive(true);
         menuScreens[2].SetActive(false);
+        menuScreens[3].SetActive(false);
 
         StartCoroutine(DesactiveLogo());
     }
@@ -104,6 +108,7 @@ public class ButtonsFunction : MonoBehaviour {
         blurImage.SetActive(false);
 
         menuIsActive = false;
+        shoot.isInMenu = false;
     }
 
     public void Scores()
@@ -130,6 +135,11 @@ public class ButtonsFunction : MonoBehaviour {
     {
         menuScreens[2].SetActive(false);
         menuScreens[1].SetActive(true);
+    }
+
+    public void Enter()
+    {
+        SceneManager.LoadScene(0);
     }
 
     //Other functions

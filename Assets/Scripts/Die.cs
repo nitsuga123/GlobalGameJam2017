@@ -148,7 +148,7 @@ public class Die : MonoBehaviour {
         blurCamera.GetComponent<BlurOptimized>().enabled = true;
         blurImage.SetActive(true);
 
-        Leaderboard.Instance.GameValues();
+        Leaderboard.Instance.gameEnd = true;
     }
 
     //Fades

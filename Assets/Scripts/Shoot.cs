@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour {
 
+    public bool isInMenu = true;
     [SerializeField]
     private float time;
 
@@ -27,8 +28,10 @@ public class Shoot : MonoBehaviour {
         time += Time.deltaTime;
 
      //   if (time > 0.7f)
-      //  {
+     //   {
 
+        if (isInMenu == false)
+        {
             if (Input.GetKeyDown(KeyCode.R))
             {
 				StartCoroutine (Disparo1 ());
@@ -49,7 +52,7 @@ public class Shoot : MonoBehaviour {
                 AttackBehaviour.Instance.AttackYellow();
                 time = 0;
             }
-     //   }
+        }
     }
 
 	IEnumerator Disparo1 (){
