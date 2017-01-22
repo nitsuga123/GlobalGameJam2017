@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
-
 
     private static Score instance;
     public static Score Instance
@@ -16,13 +14,12 @@ public class Score : MonoBehaviour {
         }
     }
 
-
     [HideInInspector]
-    public float score = 0;
+    public int score = 0;
     [SerializeField]
-    private float scoreToChange;
+    private int scoreToChange;
     [SerializeField]
-    private float scoreDelta;
+    private int scoreDelta;
     [SerializeField]
     private float timeLefToChange;
     [SerializeField]
@@ -31,7 +28,7 @@ public class Score : MonoBehaviour {
     private Text scoreText;
     private float timeLefToChangeTemp;
 
-
+    //Unity functions
 
     void Awake()
     {
@@ -46,9 +43,7 @@ public class Score : MonoBehaviour {
     }
     void Update()
     {
-
         scoreText.text = "Score: " + score;
-
 
         if (score == scoreToChange)
         {
@@ -66,7 +61,5 @@ public class Score : MonoBehaviour {
         timeLefToChange = timeLefToChange / 2;
         Debug.Log("time lef to change: " + timeLefToChange);
         Enemy.speed += velocityChange;
-
     }
-
 }

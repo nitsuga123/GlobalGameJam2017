@@ -6,14 +6,22 @@ using UnityStandardAssets.ImageEffects;
 
 public class ButtonsFunction : MonoBehaviour {
 
+    private static ButtonsFunction instance;
+    public static ButtonsFunction Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
     [SerializeField]
     private bool menuIsActive;
 
     [SerializeField]
     private float secondsToWait = 13f;
 
-    [SerializeField]
-    private GameObject[] menuScreens = new GameObject[3];
+    public GameObject[] menuScreens = new GameObject[4];
 
     [Header("Camera things")]
 
@@ -23,6 +31,18 @@ public class ButtonsFunction : MonoBehaviour {
     private Camera blurCamera;
     
     //Unity functions
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {

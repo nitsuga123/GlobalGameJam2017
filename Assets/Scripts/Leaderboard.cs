@@ -5,13 +5,37 @@ using UnityEngine.UI;
 
 public class Leaderboard : MonoBehaviour {
 
+    private static Leaderboard instance;
+    public static Leaderboard Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
     public int[] score = new int[3]; //The score[0] is the Min and the score[2] is the Max
     public string[] scoreName = new string[3];
 
     [SerializeField]
     private Text[] scores = new Text[3];
 
+    [SerializeField]
+    private InputField inputField;
+
     //Unity functions
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -93,5 +117,12 @@ public class Leaderboard : MonoBehaviour {
             position++;
             score++;
         }
+    }
+
+    public void GameValues()
+    {
+        string inputFieldText = inputField.text;
+
+        CompareScore(inputFieldText, Score.Instance.score);
     }
 }

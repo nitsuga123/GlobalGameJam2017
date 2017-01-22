@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.ImageEffects;
 
 public class Die : MonoBehaviour {
 
@@ -36,6 +37,13 @@ public class Die : MonoBehaviour {
     [SerializeField]
     private AudioSource damage3;
 
+    [Header("Camera things")]
+
+    [SerializeField]
+    private GameObject blurImage;
+    [SerializeField]
+    private Camera blurCamera;
+
     //Unity functions
 
     void Start()
@@ -53,8 +61,8 @@ public class Die : MonoBehaviour {
         {
             CharacterController.hit = true;
             time = 0;
-
         }
+
         if (animatebat)
         {
             timebat += Time.deltaTime;
@@ -64,18 +72,15 @@ public class Die : MonoBehaviour {
                 YouAreDrunkGoHome(bat);
             }
         }
+
         if (hitCount > 2)
         {
-            Debug.Log("3");
             CharacterController.anim.SetInteger("Action", 3);
-
         }
     }
 
     void YouAreDrunkGoHome(Collider2D c)
     {
-
-        
         Pool_Enemys.pool_enemys.DesactiveBat(c);
         timebat = 0;
         animatebat = false;
@@ -84,10 +89,9 @@ public class Die : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         CharacterController.anim.SetInteger("Action", 2);
+
         if (other.CompareTag("Red") || other.CompareTag("Blue") || other.CompareTag("Yellow"))
         {
-            Debug.Log("2");
-
             GameManager.Instance.hearts[hitCount].gameObject.SetActive(false);
             hitCount++;
 
@@ -103,7 +107,6 @@ public class Die : MonoBehaviour {
        
             if (hitCount > 2)
             {
-                Debug.Log("3");
                 CharacterController.anim.SetInteger("Action", 3);
             
 				StartCoroutine (FadeOut(MusicLevel, 3f));
@@ -111,30 +114,28 @@ public class Die : MonoBehaviour {
                 colider.enabled = false;
                 this.GetComponent<Shoot>().enabled = false;
 
-
                 CharacterController.die = false;
             }
+
             else
             {
                 CharacterController.die = true;
             }
+
             int i = Random.Range(0, 3);
 
             if (i == 0)
             {
-              
                 damage1.Play();
             }
 
             else if (i == 1)
             {
-               
                 damage2.Play();
             }
 
             else if (i == 2)
             {
-               
                 damage3.Play();
             }
         }
@@ -142,8 +143,15 @@ public class Die : MonoBehaviour {
 
     public void GameOver()
     {
-        SceneManager.LoadScene(0);
-    }    //Fades
+        ButtonsFunction.Instance.menuScreens[3].SetActive(true);
+
+        blurCamera.GetComponent<BlurOptimized>().enabled = true;
+        blurImage.SetActive(true);
+
+        Leaderboard.Instance.GameValues();
+    }
+
+    //Fades
 
 	public IEnumerator FadeOut(AudioSource a,float Fadetime)
     {
@@ -169,7 +177,4 @@ public class Die : MonoBehaviour {
 		}
 		a.volume = StartVolume;
 	}
-
-
 }
- 

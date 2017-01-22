@@ -8,15 +8,15 @@ public class Enemy : MonoBehaviour {
     
     private Rigidbody2D rb;
 
-	// Use this for initialization
-	void Awake () {
+	//Unity functions
 
+	void Awake ()
+    {
         rb=GetComponent<Rigidbody2D>();
-
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         rb.velocity = new Vector3(-speed * Time.deltaTime, 0, 0);
 	}
 }

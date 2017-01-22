@@ -42,9 +42,7 @@ public class GameManager : MonoBehaviour {
     }
     void Update()
     {
-
-     
-        if (gameEnd)
+        /*if (gameEnd)
         {
             restart.SetActive(true);
         }
@@ -54,9 +52,6 @@ public class GameManager : MonoBehaviour {
             restart.SetActive(false);
 
             SceneManager.LoadScene(0);
-        }
-
-          }
-
-
+        }*/
+    }
 }

@@ -14,14 +14,13 @@ public class CharacterController : MonoBehaviour {
 
     //Unity functions
 
-	void Awake () {
+	void Awake ()
+    {
         anim = GetComponent<Animator>();
-
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
+	void Update ()
+    {
         if (Input.GetKeyDown(KeyCode.R) || (Input.GetKeyDown(KeyCode.B))  || (Input.GetKeyDown(KeyCode.Y)))
         {
             anim.SetInteger("Action",1);
@@ -31,10 +30,10 @@ public class CharacterController : MonoBehaviour {
         {
             Attack = true;
         }
-        if(Attack && hit && die)
+
+        if (Attack && hit && die)
         {
             anim.SetInteger("Action", 0);
         }
-
     }
 }

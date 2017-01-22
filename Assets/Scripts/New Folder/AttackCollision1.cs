@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackCollision1 : MonoBehaviour {
 
     [SerializeField]
-    private float scoreDelta;
+    private int scoreDelta;
     [SerializeField]
     private Transform player;
 
