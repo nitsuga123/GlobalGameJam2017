@@ -23,6 +23,9 @@ public class Pool_Enemys : MonoBehaviour {
     private GameObject[] bat_enemy;
 
     [SerializeField]
+    private GameObject bat_previous;
+
+    [SerializeField]
     private int enemys_Amount;
 
     [SerializeField]
@@ -55,16 +58,30 @@ public class Pool_Enemys : MonoBehaviour {
     {
         bat_list = new List<GameObject>();
         for (int i = 0; i < enemys_Amount; i++){
+
+
             CreateBat();
+
+
         }
     }
 
     private void CreateBat()
     {
  
+        
         GameObject bat = Instantiate(bat_enemy[Random.Range(0,bat_enemy.Length)], new Vector3(spawn.transform.position.x, Random.Range(min_high,max_high)), Quaternion.identity);
-        bat.gameObject.SetActive(false);
-        bat_list.Add(bat);
+
+        if (!bat.transform.tag.Equals(bat_previous.transform.tag)){
+            bat.gameObject.SetActive(false);
+            bat_list.Add(bat);
+            bat_previous = bat;
+        }
+        else
+        {
+            enemys_Amount++;
+            Destroy(bat);
+        }
 
     }
 
