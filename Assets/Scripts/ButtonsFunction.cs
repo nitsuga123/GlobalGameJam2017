@@ -123,7 +123,7 @@ public class ButtonsFunction : MonoBehaviour {
 
         Time.timeScale = 1;
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void Exit()
@@ -139,7 +139,7 @@ public class ButtonsFunction : MonoBehaviour {
 
     public void Enter()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("juego");
     }
 
     //Other functions

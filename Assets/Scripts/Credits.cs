@@ -28,7 +28,7 @@ public class Credits : MonoBehaviour {
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("juego");
         }
     }
 
@@ -38,6 +38,6 @@ public class Credits : MonoBehaviour {
     {
         yield return new WaitForSeconds(timeToWait);
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("juego");
     }
 }

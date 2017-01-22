@@ -16,8 +16,15 @@ public class CharacterController : MonoBehaviour {
 
 	void Awake ()
     {
-        anim = GetComponent<Animator>();
-	}
+         Attack = true;
+
+    hit = true;
+
+     die = true;
+
+    anim = GetComponent<Animator>();
+        anim.SetInteger("Action", 0);
+    }
 
 	void Update ()
     {
