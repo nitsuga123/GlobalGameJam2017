@@ -118,7 +118,7 @@ public class Leaderboard : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Sorry :(");
+            
         }
     }
 

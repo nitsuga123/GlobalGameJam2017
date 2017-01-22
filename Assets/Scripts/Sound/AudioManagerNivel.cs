@@ -11,7 +11,7 @@ public class AudioManagerNivel : MonoBehaviour {
 	void Start () {
 		
 
-		StartCoroutine(Fadein(MusicLevel, 1.5f, 0.26f));
+		StartCoroutine(Fadein(MusicLevel, 1.5f, 0.4f));
 
 	}
 	// Update is called once per frame
