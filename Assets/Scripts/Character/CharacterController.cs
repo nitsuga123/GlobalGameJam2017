@@ -26,7 +26,9 @@ public class CharacterController : MonoBehaviour {
         {
             anim.SetInteger("Action",1);
             Attack = false;
-        }else
+            Debug.Log("1");
+        }
+        else
         {
             Attack = true;
         }

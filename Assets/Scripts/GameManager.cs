@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour {
     public Image[] hearts = new Image[3];
     [SerializeField]
     private Die player;
-    private float timeLefToChange;
     [SerializeField]
     private float velocityChange;
 

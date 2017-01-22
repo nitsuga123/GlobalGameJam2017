@@ -48,28 +48,36 @@ public class Die : MonoBehaviour {
     void Update()
     {
 
+        Debug.Log("hit" + hitCount);
+
         time += Time.deltaTime;
 
-        if (!CharacterController.hit && time>0.7f)
+        if (!CharacterController.hit && time > 0.7f)
         {
             CharacterController.hit = true;
             time = 0;
-            
+
         }
         if (animatebat)
         {
-            timebat +=Time.deltaTime;
+            timebat += Time.deltaTime;
 
             if (timebat > 1)
             {
                 YouAreDrunkGoHome(bat);
             }
         }
+        if (hitCount > 2)
+        {
+            Debug.Log("3");
+            CharacterController.anim.SetInteger("Action", 3);
+
+        }
     }
 
     void YouAreDrunkGoHome(Collider2D c)
     {
-        Debug.Log("rip");
+
         
         Pool_Enemys.pool_enemys.DesactiveBat(c);
         timebat = 0;
@@ -81,6 +89,7 @@ public class Die : MonoBehaviour {
         CharacterController.anim.SetInteger("Action", 2);
         if (other.CompareTag("Red") || other.CompareTag("Blue") || other.CompareTag("Yellow"))
         {
+            Debug.Log("2");
 
             GameManager.Instance.hearts[hitCount].gameObject.SetActive(false);
             hitCount++;
@@ -95,8 +104,9 @@ public class Die : MonoBehaviour {
 
             bat = other;
        
-            if (hitCount == 3)
+            if (hitCount > 2)
             {
+                Debug.Log("3");
                 CharacterController.anim.SetInteger("Action", 3);
             
 				StartCoroutine (FadeOut(MusicLevel, 3f));
@@ -115,19 +125,19 @@ public class Die : MonoBehaviour {
 
             if (i == 0)
             {
-                Debug.Log("Entro1");
+              
                 damage1.Play();
             }
 
             else if (i == 1)
             {
-                Debug.Log("Entro2");
+               
                 damage2.Play();
             }
 
             else if (i == 2)
             {
-                Debug.Log("Entro3");
+               
                 damage3.Play();
             }
         }
