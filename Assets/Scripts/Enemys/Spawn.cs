@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,7 +61,6 @@ public class Spawn : MonoBehaviour {
         }
         if (collider.gameObject.CompareTag("Yellow"))
         {
-           
             Pool_Enemys.pool_enemys.DesactiveBat(collider);
         }
     }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -47,7 +47,7 @@ public class Score : MonoBehaviour {
     void Update()
     {
 
-        scoreText.text = "Score= " + score;
+        scoreText.text = "Score: " + score;
 
 
         if (score == scoreToChange)
