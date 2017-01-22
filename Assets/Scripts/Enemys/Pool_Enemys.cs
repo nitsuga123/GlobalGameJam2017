@@ -72,7 +72,7 @@ public class Pool_Enemys : MonoBehaviour {
     {
         if (bat_list.Count == 0)
         {
-           // CreateBat();
+            CreateBat();
 
         }
         return BatAmount();

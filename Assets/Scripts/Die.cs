@@ -78,9 +78,10 @@ public class Die : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        CharacterController.anim.SetInteger("Action", 2);
         if (other.CompareTag("Red") || other.CompareTag("Blue") || other.CompareTag("Yellow"))
         {
-            CharacterController.anim.SetInteger("Action", 2);
+           
             GameManager.Instance.hearts[hitCount].gameObject.SetActive(false);
             hitCount++;
 
@@ -97,11 +98,13 @@ public class Die : MonoBehaviour {
             if (hitCount == 3)
             {
                 CharacterController.anim.SetInteger("Action", 3);
-                StartCoroutine(GameOver());
+            
 				StartCoroutine (FadeOut(MusicLevel, 3f));
 				StartCoroutine (Fadein(MusicGameOver, 4.2f, 0.26f));
                 colider.enabled = false;
                 this.GetComponent<Shoot>().enabled = false;
+
+
                 CharacterController.die = false;
             }
             else
@@ -130,20 +133,10 @@ public class Die : MonoBehaviour {
         }
     }
 
-
-   
-
-    //Other functions
-
-    private IEnumerator GameOver()
+    public void GameOver()
     {
-        yield return new WaitForSeconds (timeToDie);
-
-
         SceneManager.LoadScene(0);
-    }
-
-    //Fades
+    }    //Fades
 
 	public IEnumerator FadeOut(AudioSource a,float Fadetime)
     {
