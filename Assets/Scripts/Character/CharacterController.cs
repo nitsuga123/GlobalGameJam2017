@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +26,6 @@ public class CharacterController : MonoBehaviour {
         {
             anim.SetInteger("Action",1);
             Attack = false;
-            Debug.Log("1");
         }
         else
         {

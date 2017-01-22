@@ -47,9 +47,6 @@ public class Die : MonoBehaviour {
 
     void Update()
     {
-
-        Debug.Log("hit" + hitCount);
-
         time += Time.deltaTime;
 
         if (!CharacterController.hit && time > 0.7f)
