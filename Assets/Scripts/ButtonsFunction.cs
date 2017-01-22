@@ -2,14 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.ImageEffects;
 
 public class ButtonsFunction : MonoBehaviour {
+
+    [SerializeField]
+    private bool menuIsActive;
 
     [SerializeField]
     private float secondsToWait = 13f;
 
     [SerializeField]
     private GameObject[] menuScreens = new GameObject[3];
+
+    [Header("Camera things")]
+
+    [SerializeField]
+    private GameObject blurImage;
+    [SerializeField]
+    private Camera blurCamera;
     
     //Unity functions
 
@@ -17,11 +28,48 @@ public class ButtonsFunction : MonoBehaviour {
     {
         StopAllCoroutines();
 
+        menuIsActive = true;
+
+        Time.timeScale = 0;
+
         menuScreens[0].SetActive(true);
         menuScreens[1].SetActive(true);
         menuScreens[2].SetActive(false);
 
         StartCoroutine(DesactiveLogo());
+    }
+
+    void Update()
+    {
+        if (menuIsActive)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Scores();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                if (menuScreens[2].activeInHierarchy)
+                {
+                    Back();
+                }
+                else
+                {
+                    Play();
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                Credits();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Exit();
+            }
+        }
     }
     
     //Buttons functions
@@ -30,7 +78,12 @@ public class ButtonsFunction : MonoBehaviour {
     {
         ActiveMenus(false);
 
-        //TODO: PLAY
+        Time.timeScale = 1;
+
+        blurCamera.GetComponent<BlurOptimized>().enabled = false;
+        blurImage.SetActive(false);
+
+        menuIsActive = false;
     }
 
     public void Scores()
@@ -42,6 +95,8 @@ public class ButtonsFunction : MonoBehaviour {
     public void Credits()
     {
         menuScreens[1].SetActive(false);
+
+        Time.timeScale = 1;
 
         SceneManager.LoadScene(1);
     }
