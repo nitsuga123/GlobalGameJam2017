@@ -48,7 +48,7 @@ public class AttackCollision1 : MonoBehaviour {
 				BatDies3.Play ();
 			}
 
-            GameManager.Instance.score += scoreDelta;
+            Score.Instance.score += scoreDelta;
         }
         else
         {

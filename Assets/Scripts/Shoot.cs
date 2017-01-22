@@ -26,8 +26,8 @@ public class Shoot : MonoBehaviour {
     {
         time += Time.deltaTime;
 
-        if (time > 0.7f)
-        {
+     //   if (time > 0.7f)
+      //  {
 
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -49,7 +49,7 @@ public class Shoot : MonoBehaviour {
                 AttackBehaviour.Instance.AttackYellow();
                 time = 0;
             }
-        }
+     //   }
     }
 
 	IEnumerator Disparo1 (){

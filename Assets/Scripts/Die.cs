@@ -81,7 +81,7 @@ public class Die : MonoBehaviour {
         CharacterController.anim.SetInteger("Action", 2);
         if (other.CompareTag("Red") || other.CompareTag("Blue") || other.CompareTag("Yellow"))
         {
-           
+
             GameManager.Instance.hearts[hitCount].gameObject.SetActive(false);
             hitCount++;
 

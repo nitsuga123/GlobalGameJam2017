@@ -22,7 +22,7 @@ public class AttackCollision : MonoBehaviour {
             Animator anim = collider.gameObject.GetComponent<Animator>();
             anim.SetTrigger("BatDie");
 
-            GameManager.Instance.score += 10f;
+            Score.Instance.score += 10f;
             AttackBehaviour.Instance.EndRed();
             transform.position = player.position;
             // StartCoroutine(BatDie(collider));
@@ -39,7 +39,7 @@ public class AttackCollision : MonoBehaviour {
             Animator anim = collider.gameObject.GetComponent<Animator>();
             anim.SetTrigger("BatDie");
 
-            GameManager.Instance.score += 10f;
+            Score.Instance.score += 10f;
             AttackBehaviour.Instance.EndYellow();
             transform.position = player.position;
            //  StartCoroutine(BatDie(collider));
@@ -56,7 +56,7 @@ public class AttackCollision : MonoBehaviour {
             Animator anim = collider.gameObject.GetComponent<Animator>();
             anim.SetTrigger("BatDie");
 
-            GameManager.Instance.score += 10f;
+            Score.Instance.score += 10f;
             AttackBehaviour.Instance.EndBlue();
             transform.position = player.position;
            // StartCoroutine(BatDie(collider));

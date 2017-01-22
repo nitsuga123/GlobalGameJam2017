@@ -14,7 +14,7 @@ public class Spawn : MonoBehaviour {
     }
 
     public float timeleft;
-    private float i;
+    public float i;
 
     //Unity functions
 
