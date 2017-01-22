@@ -9,6 +9,17 @@ public class AttackCollision1 : MonoBehaviour {
     [SerializeField]
     private Transform player;
 
+
+	[SerializeField]
+	private AudioSource BatDies1;
+
+	[SerializeField]
+	private AudioSource BatDies2;
+
+	[SerializeField]
+	private AudioSource BatDies3;
+
+
     // Use this for initialization
     void Start() {
 
@@ -22,12 +33,23 @@ public class AttackCollision1 : MonoBehaviour {
     {
 
         if (collider.gameObject.tag.Equals(this.gameObject.tag))
-        {
+		{
+			
+
+
             Pool_Enemys.pool_enemys.DesactiveBat(collider);
             AttackBehaviour.Instance.EndRed();
             AttackBehaviour.Instance.EndBlue();
             AttackBehaviour.Instance.EndYellow();
             transform.position = player.position;
+
+			if (collider.gameObject.CompareTag("Red")) {
+				BatDies1.Play ();
+			} else if (collider.gameObject.CompareTag("Blue")) {
+				BatDies2.Play ();
+			} else {
+				BatDies3.Play ();
+			}
 
             GameManager.Instance.score += scoreDelta;
         }
