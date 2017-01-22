@@ -72,7 +72,7 @@ public class Pool_Enemys : MonoBehaviour {
     {
         if (bat_list.Count == 0)
         {
-            CreateBat();
+           // CreateBat();
 
         }
         return BatAmount();
@@ -83,8 +83,8 @@ public class Pool_Enemys : MonoBehaviour {
         int batIndex = Random.Range(0, bat_list.Count-1);
 
         GameObject bat = bat_list[batIndex];
-        bat_list.RemoveAt(batIndex
-            );
+        bat_list.RemoveAt(batIndex);
+        bat.transform.rotation = spawn.transform.rotation;
         bat.gameObject.SetActive(true);
         return bat;
     }

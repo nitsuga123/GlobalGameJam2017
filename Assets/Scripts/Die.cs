@@ -6,6 +6,14 @@ using UnityEngine.SceneManagement;
 public class Die : MonoBehaviour {
 
     [SerializeField]
+    float timebat;
+
+    private Collider2D bat;
+
+    private bool animatebat;
+    private bool timecheck;
+
+    [SerializeField]
     private Collider2D colider;
 
     [HideInInspector]
@@ -33,24 +41,73 @@ public class Die : MonoBehaviour {
     void Start()
     {
         hitCount = 0;
+        timebat = 0;
+        animatebat = false;
     }
 
     void Update()
     {
+
         time += Time.deltaTime;
 
         if (!CharacterController.hit && time>0.7f)
         {
             CharacterController.hit = true;
             time = 0;
+            
+        }
+        if (animatebat)
+        {
+            timebat +=Time.deltaTime;
+
+            if (timebat > 1)
+            {
+                YouAreDrunkGoHome(bat);
+            }
         }
     }
+
+    void YouAreDrunkGoHome(Collider2D c)
+    {
+        Debug.Log("rip");
+        
+        Pool_Enemys.pool_enemys.DesactiveBat(c);
+        timebat = 0;
+        animatebat = false;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Red") || other.CompareTag("Blue") || other.CompareTag("Yellow"))
         {
-            Debug.Log("1");
+            CharacterController.anim.SetInteger("Action", 2);
+            GameManager.Instance.hearts[hitCount].gameObject.SetActive(false);
+            hitCount++;
 
+            CharacterController.hit = false;
+            time = 0;
+
+            Animator batAnim = other.gameObject.GetComponentInChildren<Animator>();
+
+            batAnim.SetTrigger("Bat");
+            animatebat = true;
+
+            bat = other;
+       
+            if (hitCount == 3)
+            {
+                CharacterController.anim.SetInteger("Action", 3);
+                StartCoroutine(GameOver());
+				StartCoroutine (FadeOut(MusicLevel, 3f));
+				StartCoroutine (Fadein(MusicGameOver, 4.2f, 0.26f));
+                colider.enabled = false;
+                this.GetComponent<Shoot>().enabled = false;
+                CharacterController.die = false;
+            }
+            else
+            {
+                CharacterController.die = true;
+            }
             int i = Random.Range(0, 3);
 
             if (i == 0)
@@ -70,34 +127,11 @@ public class Die : MonoBehaviour {
                 Debug.Log("Entro3");
                 damage3.Play();
             }
-
-            CharacterController.anim.SetInteger("Action", 2);
-            GameManager.Instance.hearts[hitCount].gameObject.SetActive(false);
-            hitCount++;
-
-            CharacterController.hit = false;
-            time = 0;
-
-            Animator batAnim = other.gameObject.GetComponent<Animator>();
-
-            batAnim.SetTrigger("BatDie");
-
-            if (hitCount == 3)
-            {
-                CharacterController.anim.SetInteger("Action", 3);
-                StartCoroutine(GameOver());
-				StartCoroutine (FadeOut(MusicLevel, 3f));
-				StartCoroutine (Fadein(MusicGameOver, 4.2f, 0.26f));
-                colider.enabled = false;
-                this.GetComponent<Shoot>().enabled = false;
-                CharacterController.die = false;
-            }
-            else
-            {
-                CharacterController.die = true;
-            }
         }
     }
+
+
+   
 
     //Other functions
 
@@ -106,7 +140,7 @@ public class Die : MonoBehaviour {
         yield return new WaitForSeconds (timeToDie);
 
 
-        //SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
 
     //Fades
@@ -119,7 +153,6 @@ public class Die : MonoBehaviour {
 			a.volume -= StartVolume * Time.deltaTime / Fadetime;
 			yield return null;
 		}
-
 		a.Stop();
 		a.volume = StartVolume;
 	}
@@ -134,7 +167,9 @@ public class Die : MonoBehaviour {
 			a.volume += StartVolume * Time.deltaTime / Fadetime;
 			yield return null;
 		}
-
 		a.volume = StartVolume;
 	}
+
+
 }
+ 
