@@ -43,10 +43,6 @@ public class Pool_Enemys : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-
-        
-        Debug.Log("Bounds Called");
-
     }
 
     private void SetBounds()
@@ -95,7 +91,7 @@ public class Pool_Enemys : MonoBehaviour {
         bat.transform.position = new Vector3(spawn.transform.position.x, Random.Range(min_high, max_high));
         bat.gameObject.SetActive(false);
         bat_list.Add(bat.gameObject);
-        SpriteRenderer batRen = bat.GetComponent<SpriteRenderer>();
+        SpriteRenderer batRen = bat.GetComponentInChildren<SpriteRenderer>();
         batRen.color = new Color(batRen.color.r,batRen.color.g,batRen.color.b,1f);
     }
 }
