@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour {
     void Update()
     {
 
+        scoreText.text = "Score= " + score;
 
         if (gameEnd)
         {

@@ -11,6 +11,9 @@ public class AttackCollision : MonoBehaviour {
 
     //Unity functions
 
+  
+
+
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("BatRed") && (this.gameObject.tag=="Red"))
