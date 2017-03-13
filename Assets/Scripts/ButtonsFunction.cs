@@ -24,7 +24,7 @@ public class ButtonsFunction : MonoBehaviour {
     [SerializeField]
     private Shoot shoot;
 
-    public GameObject[] menuScreens = new GameObject[4];
+    public GameObject[] menuScreens = new GameObject[3];
 
     [Header("Camera things")]
 
@@ -56,11 +56,10 @@ public class ButtonsFunction : MonoBehaviour {
         Time.timeScale = 0;
 
         menuScreens[0].SetActive(true);
-        menuScreens[1].SetActive(true);
+        menuScreens[1].SetActive(false);
         menuScreens[2].SetActive(false);
-        menuScreens[3].SetActive(false);
 
-        StartCoroutine(DesactiveLogo());
+
     }
 
     void Update()
@@ -113,13 +112,13 @@ public class ButtonsFunction : MonoBehaviour {
 
     public void Scores()
     {
-        menuScreens[1].SetActive(false);
-        menuScreens[2].SetActive(true);
+        menuScreens[0].SetActive(false);
+        menuScreens[1].SetActive(true);
     }
 
     public void Credits()
     {
-        menuScreens[1].SetActive(false);
+        menuScreens[0].SetActive(false);
 
         Time.timeScale = 1;
 
@@ -133,8 +132,8 @@ public class ButtonsFunction : MonoBehaviour {
 
     public void Back()
     {
-        menuScreens[2].SetActive(false);
-        menuScreens[1].SetActive(true);
+        menuScreens[1].SetActive(false);
+        menuScreens[0].SetActive(true);
     }
 
     public void Enter()
@@ -152,9 +151,5 @@ public class ButtonsFunction : MonoBehaviour {
         }
     }
 
-    private IEnumerator DesactiveLogo()
-    {
-        yield return new WaitForSeconds(secondsToWait);
-        menuScreens[0].SetActive(false);
-    }
+
 }

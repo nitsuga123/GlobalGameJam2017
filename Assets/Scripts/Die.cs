@@ -144,10 +144,10 @@ public class Die : MonoBehaviour {
     public void GameOver()
     {
         ButtonsFunction.Instance.menuScreens[3].SetActive(true);
-
+       
         blurCamera.GetComponent<BlurOptimized>().enabled = true;
         blurImage.SetActive(true);
-
+        Enemy.speed = 100;
         Leaderboard.Instance.gameEnd = true;
     }
 
